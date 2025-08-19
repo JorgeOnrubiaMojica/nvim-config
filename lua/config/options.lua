@@ -1,4 +1,3 @@
-
 local option = vim.o
 
 -- Set highlight on search
@@ -6,6 +5,8 @@ option.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
+
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 option.mouse = 'a'
@@ -39,4 +40,3 @@ option.completeopt = 'menuone,noselect'
 option.termguicolors = true
 
 vim.cmd('colorscheme catppuccin-mocha')
-
