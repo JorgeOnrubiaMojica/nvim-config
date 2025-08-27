@@ -6,6 +6,7 @@ return {
       lspconfig['lua_ls'].setup {}
       lspconfig['phpactor'].setup {}
       lspconfig['ts_ls'].setup {}
+      lspconfig['marksman'].setup {}
     end
   },
   {
