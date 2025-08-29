@@ -4,6 +4,13 @@ vim.diagnostic.config({
   virtual_text = {
     severity = vim.diagnostic.severity.WARNING,
   },
+  float = {
+    border = 'rounded',
+    source = 'always',
+    focusable = false,
+    -- La clave es la siguiente linea:
+    wrap = true, -- Esto envuelve el texto si es muy largo
+  },
 })
 
 require("fzf-lua").register_ui_select()
