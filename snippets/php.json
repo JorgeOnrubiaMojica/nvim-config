@@ -1,0 +1,30 @@
+{
+  "public_function": {
+    "prefix": "pubf",
+    "body": [
+      "public function ${1:name}(){",
+      "${2:body}",
+      "}"
+    ]
+  },
+  "public_static_function": {
+    "prefix": "pubsf",
+    "body": [
+      "public static function ${1:name}(){",
+      "${2:body}",
+      "}"
+    ]
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "/**",
+      "**@test",
+      "**/",
+      "public function ${1:name}(): void",
+      "{",
+      "${2:body}",
+      "}"
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 return {
-  'jiangmiao/auto-pairs',
+  { 'echasnovski/mini.pairs', version = '*' },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
