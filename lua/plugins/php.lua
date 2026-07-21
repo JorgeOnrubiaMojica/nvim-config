@@ -17,14 +17,15 @@ return {
       { '<leader>pc', ':PhpactorCopyFile<CR>', desc = 'Copy file' },
       { '<leader>pv', ':PhpactorMoveFile<CR>', desc = 'Move file' },
       { '<leader>pt', ':PhpactorTransform<CR>', desc = 'Transform code' },
-      -- Buscar implementations de interfaz bajo el cursor
+      -- Buscar implementations de interfaz bajo el cursor (solo PHP)
+      -- Sobrescribe el gI de LSP que no funciona en Intelephense
       { 
-        '<leader>pI', 
+        'gI', 
         function()
           local word = vim.fn.expand('<cword>')
           vim.cmd('FzfLua grep_project search=implements\\ ' .. word)
         end, 
-        desc = 'Find implementations', 
+        desc = 'Find implementations (grep)', 
         ft = 'php' 
       },
     },
