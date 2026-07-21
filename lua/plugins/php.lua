@@ -7,6 +7,15 @@ return {
     config = function()
       -- Phpactor se configura automáticamente
       -- Los comandos :Phpactor* estarán disponibles
+      
+      -- Sobrescribir <leader>am en PHP para usar Phpactor context menu
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "php",
+        callback = function(args)
+          vim.keymap.set('n', '<leader>am', ':PhpactorContextMenu<CR>', 
+            { buffer = args.buf, desc = "Phpactor actions", silent = true })
+        end,
+      })
     end,
     keys = {
       { '<leader>pm', ':PhpactorContextMenu<CR>', desc = 'Phpactor menu' },
