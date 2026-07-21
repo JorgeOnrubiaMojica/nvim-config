@@ -4,25 +4,28 @@ return {
     event = "VeryLazy",
     opts = {
       messages = {
-        view = "messages_box",
-        view_error = "messages_box_error",
-        view_warn = "messages_box_warn",
+        view = "notify",
+        view_error = "notify",
+        view_warn = "notify",
         view_history = "messages",
+        view_search = "virtualtext",
       },
-      notify = {
-        view = "mini",
+      popupmenu = {
+        enabled = true,
+        backend = "nui",
       },
       lsp = {
         override = {
-          ["vim.lsp.util.convert_input_to_markdown"] = true,
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
-          ["vim.lsp.util.show_line_diagnostics"] = false,
         },
         progress = {
           enabled = true,
-          format = "lsp",
+          format = "lsp_progress",
+          format_done = "lsp_progress_done",
           throttle = 1000 / 30,
+          view = "mini",
         },
       },
       views = {
@@ -32,32 +35,6 @@ return {
             style = "rounded",
             padding = { 1, 2 },
           },
-        },
-        messages_box = {
-          backend = "popup",
-          position = { row = 0, col = "100%" },
-          anchor = "NE",
-          size = { width = "auto", height = "auto", max_width = 60 },
-          border = { style = "rounded", highlight = "FloatBorder" },
-          timeout = 4000,
-        },
-        messages_box_error = {
-          backend = "popup",
-          position = { row = 0, col = "100%" },
-          anchor = "NE",
-          size = { width = "auto", height = "auto", max_width = 60 },
-          border = { style = "rounded", highlight = "DiagnosticFloatingError" },
-          win_options = { winhighlight = "Normal:NormalFloat" },
-          timeout = 8000,
-        },
-        messages_box_warn = {
-          backend = "popup",
-          position = { row = 0, col = "100%" },
-          anchor = "NE",
-          size = { width = "auto", height = "auto", max_width = 60 },
-          border = { style = "rounded", highlight = "DiagnosticFloatingWarn" },
-          win_options = { winhighlight = "Normal:NormalFloat" },
-          timeout = 6000,
         },
       },
       presets = {
@@ -69,6 +46,7 @@ return {
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
     },
   },
 }
