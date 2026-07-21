@@ -17,6 +17,16 @@ return {
       { '<leader>pc', ':PhpactorCopyFile<CR>', desc = 'Copy file' },
       { '<leader>pv', ':PhpactorMoveFile<CR>', desc = 'Move file' },
       { '<leader>pt', ':PhpactorTransform<CR>', desc = 'Transform code' },
+      -- Buscar implementations de interfaz bajo el cursor
+      { 
+        '<leader>pI', 
+        function()
+          local word = vim.fn.expand('<cword>')
+          vim.cmd('FzfLua grep_project search=implements\\ ' .. word)
+        end, 
+        desc = 'Find implementations', 
+        ft = 'php' 
+      },
     },
   },
 
