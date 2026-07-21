@@ -48,11 +48,11 @@ return {
           local bufnr = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-          -- Navegación básica
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
+          -- Navegación básica (con FzfLua para mejor UX)
+          vim.keymap.set('n', 'gd', "<CMD>FzfLua lsp_definitions<CR>", { buffer = bufnr, desc = "Go to definition" })
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to declaration" })
-          vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to implementation" })
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, desc = "Find references" })
+          vim.keymap.set('n', 'gI', "<CMD>FzfLua lsp_implementations<CR>", { buffer = bufnr, desc = "Go to implementation" })
+          vim.keymap.set('n', 'gr', "<CMD>FzfLua lsp_references<CR>", { buffer = bufnr, desc = "Find references" })
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover documentation" })
           vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature help" })
 
