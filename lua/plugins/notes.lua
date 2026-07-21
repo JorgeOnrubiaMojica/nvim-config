@@ -1,8 +1,9 @@
 return {
-  {
-    "nvim-neorg/neorg",
-    lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = "*", -- Pin Neorg to the latest stable release
-    config = true,
-  }
+  -- Neorg deshabilitado temporalmente por problemas con tree-sitter parsers
+  -- {
+  --   "nvim-neorg/neorg",
+  --   lazy = false,
+  --   version = "*",
+  --   config = true,
+  -- }
 }
