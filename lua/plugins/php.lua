@@ -1,15 +1,13 @@
 return {
-  -- Phpactor para refactoring avanzado (sin LSP)
+  -- Phpactor directo (sin wrapper) - más confiable
   {
-    'gbprod/phpactor.nvim',
-    build = function()
-      require('phpactor.handler.update')()
-    end,
+    'phpactor/phpactor',
     ft = 'php',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'neovim/nvim-lspconfig'
-    },
+    build = 'composer install --no-dev --optimize-autoloader',
+    config = function()
+      -- Phpactor se configura automáticamente
+      -- Los comandos :Phpactor* estarán disponibles
+    end,
     keys = {
       { '<leader>pm', ':PhpactorContextMenu<CR>', desc = 'Phpactor menu' },
       { '<leader>pn', ':PhpactorClassNew<CR>', desc = 'New class' },
@@ -18,14 +16,7 @@ return {
       { '<leader>pg', ':PhpactorGenerateAccessors<CR>', desc = 'Generate getters/setters' },
       { '<leader>pc', ':PhpactorCopyFile<CR>', desc = 'Copy file' },
       { '<leader>pv', ':PhpactorMoveFile<CR>', desc = 'Move file' },
-    },
-    opts = {
-      install = {
-        bin = vim.fn.stdpath("data") .. "/phpactor/phpactor",
-      },
-      lspconfig = {
-        enabled = false, -- Usamos Intelephense como LSP principal
-      },
+      { '<leader>pt', ':PhpactorTransform<CR>', desc = 'Transform code' },
     },
   },
 

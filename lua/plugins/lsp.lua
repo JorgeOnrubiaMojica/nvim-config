@@ -11,6 +11,9 @@ return {
 
       -- Configuración específica de Intelephense
       require('lspconfig').intelephense.setup({
+        init_options = {
+          licenceKey = vim.fn.getenv('INTELEPHENSE_LICENCE_KEY'), -- Lee la licencia de variable de entorno
+        },
         settings = {
           intelephense = {
             files = {
