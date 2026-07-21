@@ -1,5 +1,11 @@
 return {
-  { 'echasnovski/mini.pairs', version = '*' },
+  {
+    'echasnovski/mini.pairs',
+    version = '*',
+    config = function()
+      require('mini.pairs').setup()
+    end,
+  },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',

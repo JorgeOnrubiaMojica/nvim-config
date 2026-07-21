@@ -19,8 +19,8 @@
     "prefix": "test",
     "body": [
       "/**",
-      "**@test",
-      "**/",
+      " * @test",
+      " **/",
       "public function ${1:name}(): void",
       "{",
       "${2:body}",

@@ -5,8 +5,10 @@ return {
       vim.lsp.enable({
         'lua_ls',
         'phpactor',
-        'tsserver', 
         'marksman',
+        'sqlls',
+        'biome',
+        'vtsls'
       })
     end
   },
