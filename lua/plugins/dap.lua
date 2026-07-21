@@ -45,14 +45,14 @@ return {
         vim.keymap.set('n', lhs, rhs, { desc = 'DAP: ' .. desc })
       end
 
-      map('<F5>',  dap.continue,        'Continue')
-      map('<F9>',  dap.toggle_breakpoint, 'Toggle breakpoint')
-      map('<F10>', dap.step_over,       'Step over')
-      map('<F11>', dap.step_into,       'Step into')
-      map('<F23>', dap.step_out,        'Step out')       -- Shift+F11
-      map('<F17>', dap.close,           'Stop/Close')     -- Shift+F9
-      map('<leader>?', dapui.eval,      'Eval under cursor') -- visual mode tb
-      vim.keymap.set('v', '<leader>?', function() dapui.eval() end, { desc = 'DAP: Eval selection' })
+      map('<F5>',    dap.continue,          'Continue')
+      map('<F9>',    dap.toggle_breakpoint, 'Toggle breakpoint')
+      map('<F10>',   dap.step_over,         'Step over')
+      map('<F11>',   dap.step_into,         'Step into')
+      map('<S-F11>', dap.step_out,          'Step out')
+      map('<S-F5>',  dap.close,             'Stop/Close')
+      map('<leader>de', dapui.eval,         'Eval under cursor')
+      vim.keymap.set('v', '<leader>de', function() dapui.eval() end, { desc = 'DAP: Eval selection' })
     end,
   },
 }

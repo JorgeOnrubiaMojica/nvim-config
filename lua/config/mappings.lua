@@ -1,9 +1,9 @@
 -- Common
-vim.keymap.set("n", "<Tab>", ":bn<cr>", { desc = "Next buffer", silent = true })
-vim.keymap.set("n", "<leader>p", ":bp<cr>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<leader>x", ":bd<cr>", { desc = "Close buffer", silent = true })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save", silent = true })
 vim.keymap.set("n", "<leader>vs", ":vsplit<cr>", { desc = "VSplit", silent = true })
+vim.keymap.set("n", "]b", ":bn<cr>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "[b", ":bp<cr>", { desc = "Previous buffer", silent = true })
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("i", "jk", "<ESC>", { noremap = true, silent = true })
 
@@ -38,4 +38,3 @@ vim.keymap.set("n", "<leader>rcon", function() dofile(vim.fn.stdpath("config") .
 -- Debug
 vim.keymap.set("n", "<leader>daps", "<CMD>DapNew<CR>", { desc = "Start debugging" })
 vim.keymap.set("n", "<leader>dapt", "<CMD>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-vim.keymap.set("n", "<leader>dapso", "<CMD>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })

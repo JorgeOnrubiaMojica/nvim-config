@@ -7,6 +7,29 @@ return {
     end,
   },
   {
+    'echasnovski/mini.comment',
+    version = '*',
+    event = "VeryLazy",
+    config = function()
+      require('mini.comment').setup()
+    end,
+  },
+  {
+    'echasnovski/mini.starter',
+    version = '*',
+    config = function()
+      local starter = require('mini.starter')
+      starter.setup({
+        evaluate_single = true,
+        items = {
+          starter.sections.builtin_actions(),
+          starter.sections.recent_files(10, true),
+          starter.sections.recent_files(10, false),
+        },
+      })
+    end,
+  },
+  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -30,12 +53,17 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    version = "^3.0.0",
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
+      require("nvim-surround").setup({})
     end
-  }
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "VeryLazy",
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
 }
