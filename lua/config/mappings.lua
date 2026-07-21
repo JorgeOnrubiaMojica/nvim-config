@@ -31,14 +31,6 @@ vim.keymap.set({ "n", "x" }, "<leader>iv", function()
   return require("refactoring").refactor("Extract Variable")
 end, { expr = true })
 
--- LSP
-vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename" })
-vim.keymap.set("n", "<leader>am", "<CMD>FzfLua lsp_code_actions previewer=false<CR>", { desc = "Code Actions" })
-vim.keymap.set("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", { desc = "[G]oto [D]efinition" })
-vim.keymap.set("n", "gI", "<CMD>FzfLua lsp_implementations<CR>", { desc = "[G]oto [I]mplementation" })
-vim.keymap.set("n", "gr", "<CMD>FzfLua lsp_references<CR>", { desc = "[G]oto [r]eferences", silent = true })
-vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format, { desc = "Format code" })
-
 -- Reload config
 vim.keymap.set("n", "<leader>rcon", function() dofile(vim.fn.stdpath("config") .. "/init.lua") end,
   { desc = "Reload config" })
