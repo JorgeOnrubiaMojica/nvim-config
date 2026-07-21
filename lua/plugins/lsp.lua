@@ -3,16 +3,18 @@ return {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      -- LSP con nueva API para los simples
+      -- Configurar LSPs con la nueva API de Neovim 0.11+
       vim.lsp.enable({
         'lua_ls',
         'ts_ls',
         'marksman',
       })
 
-      -- Intelephense necesita setup manual para que funcionen todas las capabilities
-      local lspconfig = require('lspconfig')
-      lspconfig.intelephense.setup({
+      -- Configuración específica de Intelephense
+      vim.lsp.config.intelephense = {
+        cmd = { 'intelephense', '--stdio' },
+        filetypes = { 'php' },
+        root_markers = { 'composer.json', '.git' },
         init_options = {
           licenceKey = vim.fn.getenv('INTELEPHENSE_LICENCE_KEY'),
         },
@@ -38,7 +40,7 @@ return {
             },
           },
         },
-      })
+      }
 
       -- Keymaps que se setean cuando el LSP se attache
       vim.api.nvim_create_autocmd("LspAttach", {
