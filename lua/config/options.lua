@@ -33,6 +33,9 @@ vim.wo.signcolumn = 'yes:1'
 option.updatetime = 250
 option.timeoutlen = 300
 
+-- Allow overwriting files changed externally (E13 guard)
+vim.opt.cpoptions:remove('W')
+
 -- Set completeopt to have a better completion experience
 option.completeopt = 'menuone,noselect'
 

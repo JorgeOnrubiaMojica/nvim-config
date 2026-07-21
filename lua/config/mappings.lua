@@ -38,3 +38,6 @@ vim.keymap.set("n", "<leader>rcon", function() dofile(vim.fn.stdpath("config") .
 -- Debug
 vim.keymap.set("n", "<leader>daps", "<CMD>DapNew<CR>", { desc = "Start debugging" })
 vim.keymap.set("n", "<leader>dapt", "<CMD>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
+
+-- Git
+vim.keymap.set("n", "<leader>G", "<CMD>Git<CR>", { desc = "Git" })
