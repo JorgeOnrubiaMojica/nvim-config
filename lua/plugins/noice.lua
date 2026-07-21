@@ -5,8 +5,8 @@ return {
     opts = {
       messages = {
         view = "messages_box",
-        view_error = "messages_box",
-        view_warn = "messages_box",
+        view_error = "messages_box_error",
+        view_warn = "messages_box_warn",
         view_history = "messages",
       },
       notify = {
@@ -38,8 +38,26 @@ return {
           position = { row = 0, col = "100%" },
           anchor = "NE",
           size = { width = "auto", height = "auto", max_width = 60 },
-          border = { style = "rounded" },
+          border = { style = "rounded", highlight = "FloatBorder" },
           timeout = 4000,
+        },
+        messages_box_error = {
+          backend = "popup",
+          position = { row = 0, col = "100%" },
+          anchor = "NE",
+          size = { width = "auto", height = "auto", max_width = 60 },
+          border = { style = "rounded", highlight = "DiagnosticFloatingError" },
+          win_options = { winhighlight = "Normal:NormalFloat" },
+          timeout = 8000,
+        },
+        messages_box_warn = {
+          backend = "popup",
+          position = { row = 0, col = "100%" },
+          anchor = "NE",
+          size = { width = "auto", height = "auto", max_width = 60 },
+          border = { style = "rounded", highlight = "DiagnosticFloatingWarn" },
+          win_options = { winhighlight = "Normal:NormalFloat" },
+          timeout = 6000,
         },
       },
       presets = {
