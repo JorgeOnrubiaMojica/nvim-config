@@ -25,6 +25,15 @@ return {
           throttle = 1000 / 30,
         },
       },
+      views = {
+        cmdline_popup = {
+          position = { row = "50%", col = "50%" },
+          border = {
+            style = "rounded",
+            padding = { 1, 2 },
+          },
+        },
+      },
       presets = {
         bottom_search = true,
         command_palette = true,
