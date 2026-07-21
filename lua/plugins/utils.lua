@@ -15,21 +15,6 @@ return {
     end,
   },
   {
-    'echasnovski/mini.starter',
-    version = '*',
-    config = function()
-      local starter = require('mini.starter')
-      starter.setup({
-        evaluate_single = true,
-        items = {
-          starter.sections.builtin_actions(),
-          starter.sections.recent_files(10, true),
-          starter.sections.recent_files(10, false),
-        },
-      })
-    end,
-  },
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
