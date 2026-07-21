@@ -6,6 +6,7 @@ return {
       -- Configurar LSPs con la nueva API de Neovim 0.11+
       vim.lsp.enable({
         'lua_ls',
+        'intelephense',  -- Agregado de vuelta
         'ts_ls',
         'marksman',
       })
