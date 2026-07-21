@@ -8,17 +8,59 @@ return {
       -- Phpactor se configura automáticamente
       -- Los comandos :Phpactor* estarán disponibles
       
-      -- Sobrescribir <leader>am en PHP para usar Phpactor context menu
+      -- Menú de acciones Phpactor con FzfLua
+      local function phpactor_actions_menu()
+        local actions = {
+          { "Import class", ":PhpactorImportClass" },
+          { "Extract method", ":PhpactorExtractMethod" },
+          { "Extract constant", ":PhpactorExtractConstant" },
+          { "Extract expression", ":PhpactorExtractExpression" },
+          { "Generate method", ":PhpactorGenerateMethod" },
+          { "Generate accessor (getter/setter)", ":PhpactorGenerateAccessors" },
+          { "Implement contracts", ":PhpactorImplementContracts" },
+          { "Transform (complete constructor)", ":PhpactorTransform" },
+          { "Create new class", ":PhpactorClassNew" },
+          { "Copy file", ":PhpactorCopyFile" },
+          { "Move file", ":PhpactorMoveFile" },
+          { "Expand class", ":PhpactorClassExpand" },
+          { "Navigate to", ":PhpactorNavigate" },
+          { "Find references", ":PhpactorFindReferences" },
+          { "Change visibility", ":PhpactorChangeVisibility" },
+          { "Context menu (original)", ":PhpactorContextMenu" },
+        }
+
+        local items = {}
+        for _, action in ipairs(actions) do
+          table.insert(items, action[1])
+        end
+
+        require('fzf-lua').fzf_exec(items, {
+          prompt = 'Phpactor Actions> ',
+          actions = {
+            ['default'] = function(selected)
+              if not selected or #selected == 0 then return end
+              for _, action in ipairs(actions) do
+                if action[1] == selected[1] then
+                  vim.cmd(action[2])
+                  break
+                end
+              end
+            end,
+          },
+        })
+      end
+
+      -- Sobrescribir <leader>am en PHP para usar menú custom con FzfLua
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "php",
         callback = function(args)
-          vim.keymap.set('n', '<leader>am', ':PhpactorContextMenu<CR>', 
-            { buffer = args.buf, desc = "Phpactor actions", silent = true })
+          vim.keymap.set('n', '<leader>am', phpactor_actions_menu, 
+            { buffer = args.buf, desc = "Phpactor actions (FzfLua)", silent = true })
         end,
       })
     end,
     keys = {
-      { '<leader>pm', ':PhpactorContextMenu<CR>', desc = 'Phpactor menu' },
+      { '<leader>pm', ':PhpactorContextMenu<CR>', desc = 'Phpactor menu (original)' },
       { '<leader>pn', ':PhpactorClassNew<CR>', desc = 'New class' },
       { '<leader>pe', ':PhpactorExtractMethod<CR>', mode = 'v', desc = 'Extract method' },
       { '<leader>pi', ':PhpactorImportClass<CR>', desc = 'Import class' },
