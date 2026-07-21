@@ -65,6 +65,7 @@ return {
           -- Refactoring básico (vía LSP)
           vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
           vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code actions" })
+          vim.keymap.set('n', '<leader>am', "<CMD>FzfLua lsp_code_actions<CR>", { buffer = bufnr, desc = "Code actions (FzfLua)" })
 
           -- Formateo (si el LSP lo soporta)
           if client and client.server_capabilities.documentFormattingProvider then
