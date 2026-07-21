@@ -1,2 +1,4 @@
 # Local Pi runtime state
 .atl/
+.omo/
+init.lua.good
