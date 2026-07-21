@@ -2,17 +2,21 @@ return {
   {
     'neovim/nvim-lspconfig',
     config = function()
+      -- Usar la nueva API de Neovim 0.11+
       vim.lsp.enable({
         'lua_ls',
-        'intelephense', -- LSP principal para PHP (mejor performance y completado)
-        'tsserver', 
+        'intelephense',
+        'ts_ls', -- tsserver está deprecated, se renombró a ts_ls
         'marksman',
       })
 
-      -- Configuración específica de Intelephense
-      require('lspconfig').intelephense.setup({
+      -- Configuración específica de Intelephense con nueva API
+      vim.lsp.config.intelephense = {
+        cmd = { 'intelephense', '--stdio' },
+        filetypes = { 'php' },
+        root_markers = { 'composer.json', '.git' },
         init_options = {
-          licenceKey = vim.fn.getenv('INTELEPHENSE_LICENCE_KEY'), -- Lee la licencia de variable de entorno
+          licenceKey = vim.fn.getenv('INTELEPHENSE_LICENCE_KEY'),
         },
         settings = {
           intelephense = {
@@ -36,7 +40,7 @@ return {
             },
           },
         },
-      })
+      }
     end
   },
   {
