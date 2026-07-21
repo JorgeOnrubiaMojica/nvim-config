@@ -2,29 +2,258 @@
   "public_function": {
     "prefix": "pubf",
     "body": [
-      "public function ${1:name}(){",
-      "${2:body}",
+      "public function ${1:name}(${2}): ${3:void}",
+      "{",
+      "\t${0}",
       "}"
     ]
   },
   "public_static_function": {
     "prefix": "pubsf",
     "body": [
-      "public static function ${1:name}(){",
-      "${2:body}",
+      "public static function ${1:name}(${2}): ${3:void}",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "private_function": {
+    "prefix": "prif",
+    "body": [
+      "private function ${1:name}(${2}): ${3:void}",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "protected_function": {
+    "prefix": "prof",
+    "body": [
+      "protected function ${1:name}(${2}): ${3:void}",
+      "{",
+      "\t${0}",
       "}"
     ]
   },
   "test": {
     "prefix": "test",
     "body": [
-      "/**",
-      "**@test",
-      "**/",
-      "public function ${1:name}(): void",
+      "public function test${1:name}(): void",
       "{",
-      "${2:body}",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "construct": {
+    "prefix": "__con",
+    "body": [
+      "public function __construct(",
+      "\t${1}",
+      ") {",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "construct_promoted": {
+    "prefix": "__conp",
+    "body": [
+      "public function __construct(",
+      "\tprivate ${1:readonly }${2:Type} $${3:property},",
+      ") {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Constructor with promoted properties (PHP 8+)"
+  },
+  "invoke": {
+    "prefix": "__inv",
+    "body": [
+      "public function __invoke(${1}): ${2:void}",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "php_class": {
+    "prefix": "class",
+    "body": [
+      "<?php",
+      "",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App};",
+      "",
+      "class ${2:ClassName}",
+      "{",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Basic PHP class with declare strict types"
+  },
+  "php_final_class": {
+    "prefix": "fclass",
+    "body": [
+      "<?php",
+      "",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App};",
+      "",
+      "final class ${2:ClassName}",
+      "{",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Final PHP class"
+  },
+  "php_interface": {
+    "prefix": "interface",
+    "body": [
+      "<?php",
+      "",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App};",
+      "",
+      "interface ${2:InterfaceName}",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "php_trait": {
+    "prefix": "trait",
+    "body": [
+      "<?php",
+      "",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App};",
+      "",
+      "trait ${2:TraitName}",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "php_enum": {
+    "prefix": "enum",
+    "body": [
+      "<?php",
+      "",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App};",
+      "",
+      "enum ${2:EnumName}: ${3:string}",
+      "{",
+      "\tcase ${4:CASE_NAME} = '${5:value}';",
+      "\t${0}",
+      "}"
+    ],
+    "description": "PHP 8.1+ enum"
+  },
+  "readonly_property": {
+    "prefix": "rop",
+    "body": [
+      "private readonly ${1:Type} $${2:property};"
+    ],
+    "description": "Readonly property (PHP 8.1+)"
+  },
+  "phpdoc_function": {
+    "prefix": "doc",
+    "body": [
+      "/**",
+      " * ${1:Description}",
+      " *",
+      " * @param ${2:Type} $${3:param}",
+      " * @return ${4:void}",
+      " */",
+      "${0}"
+    ]
+  },
+  "phpdoc_class": {
+    "prefix": "docc",
+    "body": [
+      "/**",
+      " * ${1:Class description}",
+      " *",
+      " * @author ${2:Name}",
+      " */",
+      "${0}"
+    ]
+  },
+  "symfony_controller": {
+    "prefix": "symcon",
+    "body": [
+      "<?php",
+      "",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App\\Controller};",
+      "",
+      "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+      "use Symfony\\Component\\HttpFoundation\\Response;",
+      "use Symfony\\Component\\Routing\\Attribute\\Route;",
+      "",
+      "class ${2:ControllerName} extends AbstractController",
+      "{",
+      "\t#[Route('${3:/path}', name: '${4:route_name}')]",
+      "\tpublic function ${5:index}(): Response",
+      "\t{",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Symfony controller with Route attribute"
+  },
+  "symfony_route": {
+    "prefix": "route",
+    "body": [
+      "#[Route('${1:/path}', name: '${2:route_name}', methods: [${3:'GET'}])]"
+    ]
+  },
+  "phpunit_assert_equals": {
+    "prefix": "aseq",
+    "body": [
+      "\\$this->assertEquals(${1:expected}, ${2:actual});"
+    ]
+  },
+  "phpunit_assert_true": {
+    "prefix": "ast",
+    "body": [
+      "\\$this->assertTrue(${1:condition});"
+    ]
+  },
+  "phpunit_assert_false": {
+    "prefix": "asf",
+    "body": [
+      "\\$this->assertFalse(${1:condition});"
+    ]
+  },
+  "phpunit_assert_same": {
+    "prefix": "ass",
+    "body": [
+      "\\$this->assertSame(${1:expected}, ${2:actual});"
+    ]
+  },
+  "foreach": {
+    "prefix": "fore",
+    "body": [
+      "foreach (${1:\\$array} as ${2:\\$key} => ${3:\\$value}) {",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "try_catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t${1}",
+      "} catch (${2:\\Exception} ${3:\\$e}) {",
+      "\t${0}",
       "}"
     ]
   }
+}
 }
