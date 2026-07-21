@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = bufnr, desc = "Show diagnostic" })
 
     -- Refactoring básico (vía LSP)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
+    vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code actions" })
 
     -- Formateo (si el LSP lo soporta)
