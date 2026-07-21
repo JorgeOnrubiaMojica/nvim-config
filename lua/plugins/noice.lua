@@ -4,9 +4,9 @@ return {
     event = "VeryLazy",
     opts = {
       messages = {
-        view = "mini",
-        view_error = "mini",
-        view_warn = "mini",
+        view = "messages_box",
+        view_error = "messages_box",
+        view_warn = "messages_box",
         view_history = "messages",
       },
       notify = {
@@ -32,6 +32,13 @@ return {
             style = "rounded",
             padding = { 1, 2 },
           },
+        },
+        messages_box = {
+          backend = "popup",
+          position = { row = 0, col = "100%" },
+          anchor = "NE",
+          size = { width = "auto", height = "auto", max_width = 60 },
+          border = { style = "rounded" },
         },
       },
       presets = {
