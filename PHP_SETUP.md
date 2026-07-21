@@ -45,6 +45,7 @@
 - `<leader>pg` → Generate getters/setters
 - `<leader>pc` → Copy file (con namespace update)
 - `<leader>pv` → Move file (con namespace update)
+- `<leader>pt` → Transform code (conversiones automáticas)
 
 ### Testing (Neotest)
 - `<leader>tt` → Run nearest test
@@ -100,7 +101,35 @@
 
 ## Configuración de Intelephense
 
-Ajustá la versión de PHP en `lua/plugins/lsp.lua`:
+### Licencia Premium (opcional)
+
+Si tenés licencia de Intelephense, configurala así:
+
+1. **Agregá la licencia como variable de entorno** (recomendado):
+
+```bash
+# En ~/.zshrc o ~/.bashrc
+export INTELEPHENSE_LICENCE_KEY="tu-licencia-aqui"
+
+# Recargá la config
+source ~/.zshrc
+```
+
+2. **Verificá que se leyó**:
+```bash
+echo $INTELEPHENSE_LICENCE_KEY
+```
+
+3. **Reiniciá Neovim** → La config ya lee automáticamente la variable de entorno
+
+### Features premium que desbloquea la licencia:
+- Rename con preview interactivo
+- Code folding mejorado
+- Workspace symbols más rápido y preciso
+
+### Versión de PHP
+
+Ajustá la versión en `lua/plugins/lsp.lua`:
 
 ```lua
 environment = {
@@ -132,10 +161,23 @@ Desde línea de comandos:
 
 ## Instalación de herramientas externas
 
-### Vía Mason (automático al abrir Neovim)
-- `intelephense`
-- `phpstan`
-- `php-cs-fixer`
+### Intelephense
+- Se instala automáticamente vía Mason al abrir Neovim
+- Verificá: `:Mason` → buscar "intelephense"
+
+### Phpactor
+- Plugin oficial: `phpactor/phpactor`
+- Al abrir Neovim por primera vez, lazy.nvim ejecuta automáticamente:
+  ```bash
+  composer install --no-dev --optimize-autoloader
+  ```
+- **Requiere composer instalado en el sistema**
+- Si hay error, ejecutá manualmente: `:Lazy build phpactor`
+- Verificá que funciona: `:PhpactorStatus`
+
+### Herramientas adicionales vía Mason
+- `phpstan` → Análisis estático
+- `php-cs-fixer` → Formateo de código
 
 ### Vía Composer (recomendado para el proyecto)
 ```bash
@@ -160,8 +202,34 @@ composer global require friendsofphp/php-cs-fixer
 3. Reiniciá el LSP: `:LspRestart`
 
 ### Phpactor no funciona
-1. Verificá instalación: `:PhpactorStatus`
-2. Update phpactor: `:PhpactorUpdate`
+
+**Problema: "command not found" o comandos `:Phpactor*` no existen**
+
+1. Verificá que composer esté instalado:
+   ```bash
+   which composer
+   ```
+
+2. Buildea manualmente el plugin:
+   ```vim
+   :Lazy build phpactor
+   ```
+
+3. Verificá el estado:
+   ```vim
+   :PhpactorStatus
+   ```
+
+4. Si sigue fallando, revisá logs:
+   ```vim
+   :Lazy log phpactor
+   ```
+
+**Problema: Phpactor funciona pero comandos específicos fallan**
+
+- Algunos comandos requieren estar en un archivo PHP válido
+- Otros requieren que el proyecto tenga `composer.json`
+- `:PhpactorContextMenu` te muestra solo opciones disponibles para el contexto actual
 
 ### Tests no corren
 1. Verificá que exista `vendor/bin/phpunit` en tu proyecto
