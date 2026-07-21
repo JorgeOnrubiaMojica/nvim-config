@@ -39,6 +39,7 @@ return {
           anchor = "NE",
           size = { width = "auto", height = "auto", max_width = 60 },
           border = { style = "rounded" },
+          timeout = 4000,
         },
       },
       presets = {
