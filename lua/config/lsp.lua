@@ -33,6 +33,7 @@ vim.g.ale_linters = {
 vim.g.ale_php_phpstan_executable = 'vendor/bin/phpstan'
 vim.g.ale_fixers = {
   php = { 'phpcbf' },
+  json = { 'biome' },
 }
 
 -- LSP keymaps
