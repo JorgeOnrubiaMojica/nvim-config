@@ -48,17 +48,19 @@ require('mini.clue').setup({
   window = { config = { border = 'rounded' } },
 })
 
-local add = require('mini.deps').add
+local add, later = require('mini.deps').add, require('mini.deps').later
 add('stevearc/oil.nvim')
 require('oil').setup({ view_options = { show_hidden = true } })
 
 add('nvim-treesitter/nvim-treesitter')
-require('nvim-treesitter.configs').setup({
-  auto_install = true,
-  highlight = { enable = true },
-  indent = { enable = true },
-})
-require('nvim-treesitter').setup()
+later(function()
+  require('nvim-treesitter.configs').setup({
+    auto_install = true,
+    highlight = { enable = true },
+    indent = { enable = true },
+  })
+  require('nvim-treesitter').setup()
+end)
 
 add('ibhagwan/fzf-lua')
 require('fzf-lua').setup({})
