@@ -32,6 +32,7 @@ vim.keymap.set('n', 'gr', fzf.lsp_references, { desc = '[G]oto [R]eferences' })
 vim.keymap.set('n', '<leader>G', '<CMD>Git<CR>', { desc = 'Git' })
 
 
+vim.keymap.set('n', '<leader>rf', '<CMD>ALEFix<CR>', { desc = 'Format with phpcbf' })
 vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, { desc = 'Rename' })
 
 vim.api.nvim_create_user_command('PhpUnit', function(ctx)

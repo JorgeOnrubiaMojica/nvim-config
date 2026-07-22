@@ -48,6 +48,16 @@ require('mini.clue').setup({
   window = { config = { border = 'rounded' } },
 })
 
+require('mini.snippets').setup({
+  snippets = require('config.snippets'),
+})
+MiniSnippets.start_lsp_server()
+local map = vim.keymap.set
+map('i', '<C-j>', function() MiniSnippets.expand() end, { desc = 'Expand snippet' })
+map('i', '<C-l>', function() MiniSnippets.jump() end, { desc = 'Jump to next tabstop' })
+map('i', '<C-h>', function() MiniSnippets.jump({ backwards = true }) end, { desc = 'Jump to prev tabstop' })
+map('i', '<C-x>', function() MiniSnippets.stop() end, { desc = 'Stop snippet session' })
+
 local add, later = require('mini.deps').add, require('mini.deps').later
 add('stevearc/oil.nvim')
 require('oil').setup({ view_options = { show_hidden = true } })
@@ -104,3 +114,8 @@ vim.g.ale_linters = {
   php = { 'phpstan' },
 }
 vim.g.ale_php_phpstan_executable = 'vendor/bin/phpstan'
+vim.g.ale_fixers = {
+  php = { 'phpcbf' },
+}
+
+
