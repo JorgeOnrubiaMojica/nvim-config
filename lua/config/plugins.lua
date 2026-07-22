@@ -13,6 +13,8 @@ vim.cmd('packadd mini.nvim')
 
 require('mini.deps').setup({ path = { package_root = package_root } })
 
+local add, later = require('mini.deps').add, require('mini.deps').later
+
 local indentscope = require('mini.indentscope')
 indentscope.setup({
   draw = { animation = indentscope.gen_animation.none() },
@@ -36,17 +38,8 @@ vim.api.nvim_set_hl(0, 'MiniTablineCurrent', { bg = '#89b4fa', fg = '#1e1e2e', b
 vim.api.nvim_set_hl(0, 'MiniTablineModifiedCurrent', { bg = '#f5c2e7', fg = '#1e1e2e', bold = true })
 require('mini.completion').setup()
 require('mini.trailspace').setup()
-require('mini.clue').setup({
-  clues = {
-    -- Leader key triggers
-    { mode = 'n', keys = '<leader>', desc = 'Leader prefix' },
-    { mode = 'n', keys = 'g', desc = 'Goto prefix' },
-    { mode = 'n', keys = '<Tab>', desc = 'Buffer navigation' },
-    { mode = 'i', keys = 'jk', desc = 'Exit insert mode' },
-    { mode = 'x', keys = '<leader>', desc = 'Visual leader prefix' },
-  },
-  window = { config = { border = 'rounded' } },
-})
+add('folke/which-key.nvim')
+require('which-key').setup({})
 
 require('mini.snippets').setup({
   snippets = require('config.snippets'),
@@ -58,7 +51,6 @@ map('i', '<C-l>', function() MiniSnippets.jump() end, { desc = 'Jump to next tab
 map('i', '<C-h>', function() MiniSnippets.jump({ backwards = true }) end, { desc = 'Jump to prev tabstop' })
 map('i', '<C-x>', function() MiniSnippets.stop() end, { desc = 'Stop snippet session' })
 
-local add, later = require('mini.deps').add, require('mini.deps').later
 add('stevearc/oil.nvim')
 require('oil').setup({ view_options = { show_hidden = true } })
 
@@ -117,5 +109,34 @@ vim.g.ale_php_phpstan_executable = 'vendor/bin/phpstan'
 vim.g.ale_fixers = {
   php = { 'phpcbf' },
 }
+
+add('mfussenegger/nvim-dap')
+add('nvim-neotest/nvim-nio')
+add('rcarriga/nvim-dap-ui')
+add('theHamsta/nvim-dap-virtual-text')
+
+local php_debug = vim.fn.expand('~/.local/share/nvim/dap/php-debug/out/phpDebug.js')
+local dap = require('dap')
+dap.adapters.php = {
+  type = 'executable',
+  command = 'node',
+  args = { php_debug },
+}
+dap.configurations.php = {
+  {
+    type = 'php',
+    request = 'launch',
+    name = 'Listen Xdebug (Docker)',
+    port = 9003,
+    pathMappings = {
+      ['/var/www/api'] = vim.fn.getcwd(),
+    },
+  },
+}
+require('dapui').setup()
+require('nvim-dap-virtual-text').setup()
+dap.listeners.after.event_initialized['dapui_config'] = require('dapui').open
+dap.listeners.before.event_terminated['dapui_config'] = require('dapui').close
+dap.listeners.before.event_exited['dapui_config'] = require('dapui').close
 
 

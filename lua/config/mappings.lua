@@ -33,6 +33,12 @@ vim.keymap.set('n', '<leader>G', '<CMD>Git<CR>', { desc = 'Git' })
 
 
 vim.keymap.set('n', '<leader>rf', '<CMD>ALEFix<CR>', { desc = 'Format with phpcbf' })
+vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end, { desc = 'Toggle breakpoint' })
+vim.keymap.set('n', '<leader>dc', function() require('dap').continue() end, { desc = 'Continue / Start debug' })
+vim.keymap.set('n', '<leader>do', function() require('dap').step_over() end, { desc = 'Step over' })
+vim.keymap.set('n', '<leader>di', function() require('dap').step_into() end, { desc = 'Step into' })
+vim.keymap.set('n', '<leader>dO', function() require('dap').step_out() end, { desc = 'Step out' })
+vim.keymap.set('n', '<leader>dt', function() require('dap').terminate() end, { desc = 'Terminate session' })
 vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, { desc = 'Rename' })
 
 vim.api.nvim_create_user_command('PhpUnit', function(ctx)
