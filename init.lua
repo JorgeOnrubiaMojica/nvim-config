@@ -1,8 +1,6 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+require('config.options')
+pcall(require, 'config.local')
+require('config.plugins')
+require('config.mappings')
 
-require("config.lazy")
-require("config.options")
-require("config.autocommands")
-require("config.mappings")
-require("config.setups")
+vim.cmd('colorscheme minischeme')

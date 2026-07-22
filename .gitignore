@@ -1,4 +1,5 @@
-# Local Pi runtime state
-.atl/
-.omo/
-init.lua.good
+# Machine-specific config (container names, etc.)
+lua/config/local.lua
+
+# Environment files
+.env
