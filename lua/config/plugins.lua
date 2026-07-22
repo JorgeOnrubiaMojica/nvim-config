@@ -79,14 +79,14 @@ add('williamboman/mason-lspconfig.nvim')
 
 require('mason').setup()
 
+-- phpantom_lsp: force composer.json as root marker (not .git at monorepo root)
+vim.lsp.config.phpantom_lsp = {
+  root_markers = { 'composer.json' },
+}
+
 require('mason-lspconfig').setup({
   ensure_installed = { 'lua_ls', 'sqlls', 'jsonls' },
   automatic_installation = true,
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup({})
-    end,
-  },
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -99,12 +99,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-add('mfussenegger/nvim-lint')
-require('lint').linters_by_ft = {
+add('dense-analysis/ale')
+vim.g.ale_linters = {
   php = { 'phpstan' },
 }
-vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
-  callback = function()
-    require('lint').try_lint()
-  end,
-})
+vim.g.ale_php_phpstan_executable = 'vendor/bin/phpstan'
