@@ -14,7 +14,7 @@ require('catppuccin').setup({ flavour = 'mocha' })
 -- Treesitter
 add('nvim-treesitter/nvim-treesitter')
 later(function()
-  require('nvim-treesitter.configs').setup({
+  require('nvim-treesitter.config').setup({
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
