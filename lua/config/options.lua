@@ -34,3 +34,7 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
+
+
+
+vim.g.fugitive_editor_open_command = 'tabedit'
