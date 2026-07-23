@@ -1,5 +1,2 @@
 # Machine-specific config (container names, etc.)
 lua/config/local.lua
-
-# Environment files
-.env

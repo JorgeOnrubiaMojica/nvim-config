@@ -37,7 +37,22 @@ map('i', '<C-l>', function() MiniSnippets.jump() end, { desc = 'Jump to next tab
 map('i', '<C-h>', function() MiniSnippets.jump({ backwards = true }) end, { desc = 'Jump to prev tabstop' })
 map('i', '<C-x>', function() MiniSnippets.stop() end, { desc = 'Stop snippet session' })
 
--- Editor keymaps
+-- Copilot
+add('zbirenbaum/copilot.lua')
+require('copilot').setup({
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    keymap = {
+      accept = '<Right>',
+      accept_word = false,
+      accept_line = false,
+      next = '<M-]>',
+      prev = '<M-[>',
+      dismiss = '<C-]>',
+    },
+  },
+})
 map('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 map('n', '<leader>w', ':w!<CR>', { desc = 'Save', silent = true })
 map('n', '<Leader>x', bufremove.delete, { desc = 'Delete buffer' })
