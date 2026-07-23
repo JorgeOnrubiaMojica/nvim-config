@@ -30,6 +30,12 @@ require('fzf-lua').setup({})
 add('MeanderingProgrammer/render-markdown.nvim')
 require('render-markdown').setup({})
 
+require('mini.cmdline').setup({
+  window = {
+    config = { border = 'rounded' },
+  },
+})
+
 -- Fzf keymaps
 local fzf = require('fzf-lua')
 vim.keymap.set('n', '<leader>?', fzf.oldfiles, { desc = '[?] Find recently opened files' })
