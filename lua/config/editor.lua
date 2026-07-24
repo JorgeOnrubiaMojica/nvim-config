@@ -13,6 +13,7 @@ require('mini.surround').setup()
 require('mini.trailspace').setup()
 require('mini.misc').setup()
 require('mini.statusline').setup()
+require('mini.completion').setup()
 
 local bufremove = require('mini.bufremove')
 bufremove.setup()
